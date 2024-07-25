@@ -71,3 +71,35 @@ function showPopup() {
         popup.style.display = "none";
     }, 3000);
 }
+
+// Fetch form data and submit to server
+async function submitForm() {
+    const form = document.getElementById("loginForm");
+    const formData = new FormData(form);
+
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+
+    try {
+        const response = await fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log(result.message);
+            console.log("successful");
+        } else {
+            console.error('Error:', response.statusText);
+            console.log("error");
+        }
+    } catch (error) {
+        console.error('Network error:', error);
+    }
+}

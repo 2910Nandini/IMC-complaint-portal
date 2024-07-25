@@ -14,7 +14,7 @@
             <img src="/images/bg.svg">
         </div>
         <div class="login-content">
-            <form action="/register"> <!-- Update action to match your backend route -->
+            <form id="loginForm"> <!-- Update action to match your backend route -->
                 <img src="/images/IMClogo.png">
                 <h2 class="title">Welcome</h2>
                 <div class="input-div one">
@@ -68,7 +68,7 @@
                     <button type="button" class="btn small-btn" onclick="resendOTP()">Resend OTP</button>
                 </div>
                 <a href="#">Forgot Password?</a>
-                <input type="button" class="btn" value="Login" onclick="validateOTP()">
+                <input type="button" class="btn" value="Login" onclick="validateOTP()" onclick="submitForm()">
             </form>
         </div>
     </div>
