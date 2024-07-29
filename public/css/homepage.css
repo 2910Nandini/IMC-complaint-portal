@@ -1,0 +1,102 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#bgVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.title {
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-button {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background 0.3s;
+}
+
+.nav-button:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.logo img {
+    height: 100px; /* Adjust the height according to your logo size */
+    width: 100px;
+}
+
+.slider {
+    position: fixed;
+    top: 60%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1;
+    width: 300px;
+    height: 450px;
+    overflow: hidden;
+}
+
+.slider .slide {
+    display: none;
+    text-align: center;
+    font-weight: bold;
+}
+
+.slider .slide img {
+    width: 100%;
+    border-radius: 150px;
+}
+
+.caption {
+    color: white;
+    margin-top: 10px;
+}
+

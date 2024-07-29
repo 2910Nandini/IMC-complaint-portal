@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/admindash.css">
+
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="#" class="brand">
+            <i class='bx bxs-smile'></i>
+            <span class="text">Employee Complaint Portal</span>
+        </a>
+        <ul class="side-menu top">
+            <li class="active">
+                <a href="/admindash">
+                    <i class='bx bxs-dashboard' ></i>
+                    <span class="text">Admin Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/totalcomplaints">
+                    <i class='bx bxs-chat' ></i>
+                    <span class="text">All Complaints</span>
+                </a>
+            </li>
+            <li>
+                <a href="/alluser">
+                    <i class='bx bxs-group' ></i>
+                    <span class="text">Total Users</span>
+                </a>
+            </li>
+            <li>
+                <a href="/totaladmin1">
+                    <i class='bx bxs-user' ></i>
+                    <span class="text">Total Admin</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://imcindore.mp.gov.in/">
+                    <i class='bx bxs-message-dots' ></i>
+                    <span class="text">IMC</span>
+                </a>
+            </li>
+            
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="#" class="logout">
+                    <i class='bx bxs-log-out-circle' ></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!-- SIDEBAR -->
+
+    <!-- CONTENT -->
+    <section id="content">
+        <!-- NAVBAR -->
+        <nav>
+            <i class='bx bx-menu' ></i>
+            <a href="#" class="nav-link">Department</a>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden>
+            <label for="switch-mode" class="switch-mode"></label>
+            
+            <div class="profile-button" onclick="togglePopup()">
+                <a class="profile">
+                    <i class='bx bxs-user' ></i>
+                </a>
+            </div>
+
+            <!-- Profile Pop-up -->
+            <div class="popup" id="profilePopup">
+                <div class="popup-header">
+                    <div class="profile-picture">
+                        <img src="/images/avatar.svg" alt="Profile Picture">
+                    </div>
+                    <div class="profile-info">
+                        <p class="profile-name">ADMIN</p>
+                    </div>
+                </div>
+                <div class="popup-manage">
+                    <p>Email ID <i class="fas fa-envelope"></i></p>
+                    <p class="profile-email">admin@gmail.com</p>
+                </div>
+                <div class="popup-manage">
+                    <p>Username <i class="fas fa-user"></i></p>
+                    <p>ADMIN01</p>
+                </div>
+                <div class="popup-manage">
+                    <p>Employee ID <i class="fas fa-id-badge"></i></p>
+                    <p class="profile-email">1234</p>
+                </div>
+                <div class="popup-options">
+                    <ul>
+                        <li onclick="navigateTo('logout')">Logout</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- NAVBAR -->
+
+        <!-- MAIN -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Admin Dashboard</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right' ></i></li>
+                        <li>
+                            <a class="active" href="#">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <ul class="box-info">
+                <li>
+                    <i class='bx bxs-calendar-check' ></i>
+                    <span class="text">
+                        <h3>22</h3>
+                        <p>All Complaint</p>
+                    </span>
+                </li>
+                <li>
+                    <i class='bx bxs-group' ></i>
+                    <span class="text">
+                        <h3>47</h3>
+                        <p>Department</p>
+                    </span>
+                </li>
+                <li>
+                    <i class='bx bxs-user' ></i>
+                    <span class="text">
+                        <h3>40</h3>
+                        <p>Total User</p>
+                    </span>
+                </li>
+            </ul>
+
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>Complaint</h3>
+                        <i class='bx bx-search' ></i>
+                        <i class='bx bx-filter' ></i>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Department</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="/images/avatar.svg">
+                                    <p>USER</p>
+                                </td>
+                                <td>IT Department</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="/images/avatar.svg">
+                                    <p>USER</p>
+                                </td>
+                                <td>Revenue Department</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="/images/avatar.svg">
+                                    <p>USER</p>
+                                </td>
+                                <td>Revenue Department</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="/images/avatar.svg">
+                                    <p>USER</p>
+                                </td>
+                                <td>Revenue Department</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="/images/avatar.svg">
+                                    <p>USER</p>
+                                </td>
+                                <td>Education Department</td>
+                                <td><span class="status process">Process</span></td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                </div>
+                <div class="todo">
+                    <div class="head">
+                        <h3>Status</h3>
+                        <i class='bx bx-filter' ></i>
+                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <div class="chart-container">
+                        <canvas id="complaintStatusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- MAIN -->
+    </section>
+    <!-- CONTENT -->
+
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <footer>
+        <div class="row">
+            <div class="col">
+                <img src="/images/IMClogo.png" class="footer_logo">
+                <p class="footer_about">Indore Municipal Corporation Employee Complaint Portal is a platform dedicated to addressing and resolving complaints raised by Indore employees efficiently.</p>
+            </div>
+            <div class="col">
+                <h3>Address <div class="bottom_line"><span></span></div></h3>
+                <p>Naryan Singh Saput Marg, Shivaji Market,</p>
+                <p>Nagar Nigam Square,</p>
+                <p>Madhya Pradesh 452007</p>
+                <p class="footer_email">IMC1234@gmail.com</p>
+            </div>
+            <div class="col">
+                <h3>Contact Us <div class="bottom_line"><span></span></div></h3>
+                <p>HELPLINE: 104, 1075</p>
+                <P>07552704201, 2441419</P> 
+                <P>4926892</P>
+            </div>
+            <div class="col">
+                <h3>Links <div class="bottom_line"><span></span></div></h3>
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="https://imcindore.mp.gov.in/">IMC</a></li>
+                </ul>
+                <div class="social_icons">
+                    <a href="https://www.facebook.com/SwachhIndore"><ion-icon class="social_icon" name="logo-facebook"></ion-icon></a>
+                    <a href="https://www.youtube.com/@SwachhIndore"><ion-icon class="social_icon" name="logo-youtube"></ion-icon></a>
+                    <a href="https://x.com/SwachhIndore"><ion-icon class="social_icon" name="logo-twitter"></ion-icon></a>
+                    <a href="https://www.instagram.com/swachhindore/"><ion-icon class="social_icon" name="logo-instagram"></ion-icon></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Indore Municipal Corporation Ⓒ 2024 - All Rights Reserved</p>
+        <p class="copyright">Developed by IWM Interns</p>
+    </footer>
+
+    <script src="/js/admindash.js"></script>
+</body>
+</html>

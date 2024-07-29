@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" type="text/css" href="/css/filecomplaint.css">
+    
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>User Dashboard Panel</title> 
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image"><a href="">
+                <img src="/images/IMClogo.png" alt=""> </a>
+            </div>
+
+            <span class="logo_name">Employee Complaint Portal</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="/dashboard">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dashboard</span>
+                </a></li>
+                <li><a href="/filecomplaint">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Add Complaint</span>
+                </a></li>
+                <li><a href="/mycomplaint">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">My Complaints</span>
+                </a></li>
+                <!--<li><a href="/finalESP">
+                    <i class="uil uil-slack"></i>
+                    <span class="link-name">Admin Login</span>
+                </a></li>-->
+                <li><a href="https://imcindore.mp.gov.in/">
+                    <i class="uil uil-comment-alt-message"></i>
+                    <span class="link-name">IMC</span>
+                </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+            
+            <!--<img src="images/avatar.svg" alt="">-->
+            <nav1>
+                <a class="nav-link" href="#" onclick="toggleDropdown()">
+                    <img src="/images/avatar.svg" style="width:40px; border-radius:50%;" />
+                </a>
+                <div id="dropdown" class="dropdown-content">
+                    <img src="/images/avatar.svg" class="avatar-img" />
+                    <ul>
+                        <li>User ID: <span id="user-id">12345</span></li>
+                        <li>Employee ID: <span id="employee-id">67890</span></li>
+                        <li>Email ID: <span id="email-id">user@example.com</span></li>
+                        <li><a href="#" onclick="logout()">Logout</a></li>
+                    </ul>
+                </div>
+            </nav1>
+        </div>
+
+        <div class="dash-content">
+
+            <div class="container">
+                <form id="filecomplaint">
+                    <div class="overview">
+                        <div class="title">
+                            <i class="uil uil-chart"></i>
+                            <span class="text">File complaints</span>
+                        </div>
+                    <div class="form-group">
+                        <label for="employeeName">Employee Name *</label>
+                        <input type="text" id="employeeName" name="employeeName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="employeeCode">Employee Code *</label>
+                        <input type="text" id="employeeCode" name="employeeCode" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="complaintTitle">Complaint Title *</label>
+                        <input type="text" id="complaintTitle" name="complaintTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Department *</label>
+                        <select id="department" name="department" required>
+                            <option value="" disabled selected>-Select-</option>
+                            <option value="IT">IT</option>
+                            <option value="HR">HR</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Operations">Operations</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="complaintDate">Complaint Date *</label>
+                        <input type="date" id="complaintDate" name="complaintDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="complaintDetails">Complaint Details *</label>
+                        <textarea id="complaintDetails" name="complaintDetails" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="complaintAttachment">Complaint Attachment *</label>
+                        <input type="file" id="complaintAttachment" name="complaintAttachment" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" onclick="submitcomplaint(event)">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <footer>
+        <div class="row">
+            <div class="col">
+                <img src="/images/IMClogo.png" class="footer_logo">
+                <p class="footer_about">Indore Municipal Corporation Employee Complaint Portal is a platform dedicated to addressing and resolving complaints raised by Indore employees efficiently
+                </p>
+            </div>
+            <div class="col">
+                <h3>Address <div class="bottom_line"><span></span></div></h3>
+                <p>Naryan Singh Saput Marg, Shivaji Market,</p>
+                <p>Nagar Nigam Square,</p>
+                <p>Madhya Pradesh 452007</p>
+                <p class="footer_email">IMC1234@gmail.com</p>
+            </div>
+            <div class="col">
+                <h3>Contact<div class="bottom_line"><span></span></div></h3>
+               <p>HELPLINE: 104, 1075</p>
+               <p>07552704201, 2441419</p> 
+               <p>4926892</p>
+            </div>
+            <div class="col">
+                <h3>Links <div class="bottom_line"><span></span></div></h3>
+                <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="https://imcindore.mp.gov.in/">IMC</a></li>
+                </ul>
+               
+                <div class="social_icons">
+                    <a href="https://www.facebook.com/SwachhIndore"><ion-icon class="social_icon" name="logo-facebook"></ion-icon></a>
+                    <a href="https://www.youtube.com/@SwachhIndore"><ion-icon class="social_icon" name="logo-youtube"></ion-icon></a>
+                    <a href="https://x.com/SwachhIndore"><ion-icon class="social_icon" name="logo-twitter"></ion-icon></a>
+                    <a href="https://www.instagram.com/swachhindore/"><ion-icon class="social_icon" name="logo-instagram"></ion-icon></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Indore Municipal Corporation Ⓒ 2024 - All Rights Reserved</p>
+        <p class="copyright">Developed by IWM Interns</p>
+     </footer> 
+     <script src="/js/filecomplaint.js"></script>
+</body>   
+</html>

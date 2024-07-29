@@ -30,51 +30,40 @@ function togglePasswordVisibility() {
     }
 }
 
-function generateOTP() {
-    return Math.floor(1000 + Math.random() * 9000).toString();
-}
 
-function sendOTP() {
-    const email = document.getElementById("email").value;
+async function sendOTP() {
+    const email = document.querySelector('input[name="email"]').value;
+
     if (!email) {
-        alert("Please enter your email.");
+        alert('Please enter your email address');
         return;
     }
-    const otp = generateOTP();
-    // Mock function to simulate sending email
-    console.log("Sending OTP " + otp + " to " + email);
-    alert("OTP has been sent to your email.");
 
-    // Store OTP for later validation
-    localStorage.setItem("otp", otp);
+    try {
+        const response = await fetch('/send-otp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+        });
+
+        const data = await response.json();
+        alert(data.message);
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 function resendOTP() {
     sendOTP();
 }
 
-function validateOTP() {
-    const enteredOTP = document.getElementById("otp").value;
-    const storedOTP = localStorage.getItem("otp");
+// Fetch user form data and submit to server
+async function submituserForm(event) {
+    event.preventDefault(); // Prevent the default form submission
 
-    if (enteredOTP === storedOTP) {
-        showPopup();
-    } else {
-        alert("Invalid OTP. Please try again.");
-    }
-}
-
-function showPopup() {
-    const popup = document.getElementById("popup");
-    popup.style.display = "block";
-    setTimeout(() => {
-        popup.style.display = "none";
-    }, 3000);
-}
-
-// Fetch form data and submit to server
-async function submitForm() {
-    const form = document.getElementById("loginForm");
+    const form = document.getElementById("userlogin");
     const formData = new FormData(form);
 
     const data = {};
@@ -83,7 +72,7 @@ async function submitForm() {
     });
 
     try {
-        const response = await fetch('/register', {
+        const response = await fetch('/loginuser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -94,12 +83,66 @@ async function submitForm() {
         if (response.ok) {
             const result = await response.json();
             console.log(result.message);
-            console.log("successful");
+            console.log("Login successful");
+            // Redirect to dashboard
+            window.location.href = "/dashboard";
         } else {
-            console.error('Error:', response.statusText);
-            console.log("error");
+            const errorResult = await response.json();
+            alert("Invalid OTP. Please try again.");
+            console.error('Error:', errorResult.message)
         }
     } catch (error) {
         console.error('Network error:', error);
     }
 }
+
+
+// Fetch admin form data and submit to server
+async function submitadminForm(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const form = document.getElementById("adminlogin");
+    const formData = new FormData(form);
+
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+
+    try {
+        const response = await fetch('/loginadmin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log(result.message);
+            console.log("Login successful");
+            // Redirect to admin dashboard
+            window.location.href = "/admindash";
+        } else {
+            const errorResult = await response.json();
+            alert("Invalid OTP. Please try again.");
+            console.error('Error:', errorResult.message)
+        }
+    } catch (error) {
+        console.error('Network error:', error);
+    }
+}
+
+
+const sign_in_btn = document.querySelector("#sign-in-btn");
+const sign_up_btn = document.querySelector("#sign-up-btn");
+const container = document.querySelector(".container");
+
+sign_up_btn.addEventListener("click", () => {
+  container.classList.add("sign-up-mode");
+});
+
+sign_in_btn.addEventListener("click", () => {
+  container.classList.remove("sign-up-mode");
+});

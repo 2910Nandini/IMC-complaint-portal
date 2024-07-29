@@ -1,83 +1,103 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>User Login</title>
-    <link rel="stylesheet" type="text/css" href="/css/userlogin.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    <img class="wave" src="/images/wave.png">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="/css/userlogin.css" />
+    <title>Login Form</title>
+  </head>
+  <body>
     <div class="container">
-        <div class="img">
-            <img src="/images/bg.svg">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form id="userlogin" class="sign-in-form">
+            <img src="/images/IMClogo.png" width="30%" height="20%">
+            <h2 class="title">User Login</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" name="username" placeholder="Username" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" name="employeeID" placeholder="Employee ID" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" name="email" placeholder="Email" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="password" placeholder="Password" onclick="togglePasswordVisibility()"/>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="otp" placeholder="OTP" />
+            </div>
+            <div class="otp-buttons">
+              <button type="button" class="btn small-btn" onclick="sendOTP()">Send OTP</button>
+              <button type="button" class="btn small-btn" onclick="resendOTP()">Resend OTP</button>
+            </div>
+            <input type="submit" value="Login" class="btn solid"  onclick="submituserForm(event)"/>
+          </form>
+
+          <form id="adminlogin" class="sign-up-form">
+            <img src="/images/IMClogo.png" width="30%" height="20%">
+            <h2 class="title">Admin Login</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" name="username" placeholder="Username" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" name="employeeID" placeholder="Employee ID" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" name="email" placeholder="Email" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="password" placeholder="Password" onclick="togglePasswordVisibility()" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="otp" placeholder="OTP" />
+            </div>
+            <div class="otp-buttons">
+              <button type="button" class="btn small-btn" onclick="sendOTP()">Send OTP</button>
+              <button type="button" class="btn small-btn" onclick="resendOTP()">Resend OTP</button>
+            </div>
+            <input type="submit" class="btn" value="Login" onclick="submitadminForm()" />
+          </form>
         </div>
-        <div class="login-content">
-            <form id="loginForm"> <!-- Update action to match your backend route -->
-                <img src="/images/IMClogo.png">
-                <h2 class="title">Welcome</h2>
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="div">
-                        <h5>Username</h5>
-                        <input type="text" class="input" id="username">
-                    </div>
-                </div>
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-id-badge"></i>
-                    </div>
-                    <div class="div">
-                        <h5>Employee ID</h5>
-                        <input type="text" class="input" id="employeeID">
-                    </div>
-                </div>
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="div">
-                        <h5>Email</h5>
-                        <input type="email" class="input" id="email">
-                    </div>
-                </div>
-                <div class="input-div pass">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="div">
-                        <h5>Password</h5>
-                        <input type="password" class="input" id="password">
-                        <i class="fas fa-eye toggle-password" onclick="togglePasswordVisibility()"></i>
-                    </div>
-                </div>
-                <div class="input-div otp">
-                    <div class="i">
-                        <i class="fas fa-key"></i>
-                    </div>
-                    <div class="div">
-                        <h5>OTP</h5>
-                        <input type="text" class="input" id="otp">
-                    </div>
-                </div>
-                <div class="otp-buttons">
-                    <button type="button" class="btn small-btn" onclick="sendOTP()">Send OTP</button>
-                    <button type="button" class="btn small-btn" onclick="resendOTP()">Resend OTP</button>
-                </div>
-                <a href="#">Forgot Password?</a>
-                <input type="button" class="btn" value="Login" onclick="validateOTP()" onclick="submitForm()">
-            </form>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>Not a user ?</h3>
+            <button class="btn transparent" id="sign-up-btn">
+              Login as Admin
+            </button>
+          </div>
+          <img src="/images/G20.png" class="image" alt="" />
         </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>One of us ?</h3>
+            <button class="btn transparent" id="sign-in-btn">
+              Login as a User
+            </button>
+          </div>
+          <img src="/images/G20.png" class="image" alt="" />
+        </div>
+      </div>
     </div>
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <img src="/images/succesfully.gif" alt="Success">
-            <p>Thank you... REGISTRATION COMPLETE, Now you can Login</p>
-        </div>
-    </div>
-    <script type="text/javascript" src="/js/userlogin.js"></script>
-</body>
+
+    <script src="/js/userlogin.js"></script>
+  </body>
 </html>
