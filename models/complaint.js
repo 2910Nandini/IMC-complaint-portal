@@ -17,7 +17,7 @@ const complaintSchema = new mongoose.Schema({
     department: {
         type: String,
         required: true,
-        enum: ['IT', 'HR', 'Finance', 'Operations', 'Admin']
+        //enum: ['IT', 'HR', 'Finance', 'Operations', 'Admin']
     },
     email: {
         type: String,
@@ -26,7 +26,7 @@ const complaintSchema = new mongoose.Schema({
     complaintDate: {
         type: Date,
         required: true,
-        default: Date.now
+        //default: Date.now
     },
     complaintDetails: {
         type: String,

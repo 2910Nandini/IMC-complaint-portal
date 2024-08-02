@@ -18,9 +18,8 @@ inputs.forEach(input => {
 });
 
 
-function togglePasswordVisibility() {
-    const passwordInput = document.getElementById("password");
-    const passwordIcon = document.querySelector(".toggle-password");
+function togglePasswordVisibility(inputId, icon) {
+    const passwordInput = document.getElementById(inputId);
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
         passwordIcon.classList.add("fa-eye-slash");
@@ -31,16 +30,19 @@ function togglePasswordVisibility() {
 }
 
 
-async function sendOTP() {
-    const email = document.querySelector('input[name="email"]').value;
+async function sendOTP(formId) {
+    const form = document.getElementById(formId);
+    const email = form.querySelector('input[name="email"]').value;
 
     if (!email) {
         alert('Please enter your email address');
         return;
     }
 
+    const endpoint = formId === 'userlogin' ? '/send-user-otp' : '/send-admin-otp';
+
     try {
-        const response = await fetch('/send-otp', {
+        const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -55,8 +57,8 @@ async function sendOTP() {
     }
 }
 
-function resendOTP() {
-    sendOTP();
+function resendOTP(formId) {
+    sendOTP(formId);
 }
 
 // Fetch user form data and submit to server
@@ -84,7 +86,7 @@ async function submituserForm(event) {
             const result = await response.json();
             console.log(result.message);
             console.log("Login successful");
-            // Redirect to dashboard
+            // Redirect to user dashboard
             window.location.href = "/dashboard";
         } else {
             const errorResult = await response.json();

@@ -34,6 +34,11 @@ mongoose.connect(process.env.MONGODB_URI ||
 const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
+const renderRouter = require('./routes/render');
+app.use('/', renderRouter);
+
+const otpRouter = require('./routes/otpRoute');
+app.use('/', otpRouter);
 
 
 // Start the server

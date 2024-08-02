@@ -19,27 +19,29 @@
             <h2 class="title">User Login</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="username" placeholder="Username" />
+              <input type="text" name="username" placeholder="Username" autocomplete="username"/>
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="employeeID" placeholder="Employee ID" />
+              <input type="text" name="employeeID" placeholder="Employee ID" autocomplete="organization" />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" name="email" placeholder="Email" />
+              <input type="email" name="email" placeholder="Email" autocomplete="email" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" name="password" placeholder="Password" onclick="togglePasswordVisibility()"/>
+              <input type="password" id="user-password" name="password" placeholder="Password" autocomplete="current-password" />
+              <i class="fas fa-eye toggle-password" onclick="togglePasswordVisibility('user-password', this)"></i>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" name="otp" placeholder="OTP" />
+              <input type="password" id="user-otp" name="otp" placeholder="OTP" autocomplete="one-time-code"/>
+              <i class="fas fa-eye toggle-password" onclick="togglePasswordVisibility('user-otp', this)"></i>
             </div>
             <div class="otp-buttons">
-              <button type="button" class="btn small-btn" onclick="sendOTP()">Send OTP</button>
-              <button type="button" class="btn small-btn" onclick="resendOTP()">Resend OTP</button>
+              <button type="button" class="btn small-btn" onclick="sendOTP('userlogin')">Send OTP</button>
+              <button type="button" class="btn small-btn" onclick="resendOTP('userlogin')">Resend OTP</button>
             </div>
             <input type="submit" value="Login" class="btn solid"  onclick="submituserForm(event)"/>
           </form>
@@ -49,29 +51,31 @@
             <h2 class="title">Admin Login</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="username" placeholder="Username" />
+              <input type="text" name="username" placeholder="Username" autocomplete="username"/>
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="employeeID" placeholder="Employee ID" />
+              <input type="text" name="employeeID" placeholder="Employee ID" autocomplete="organization"/>
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" name="email" placeholder="Email" />
+              <input type="email" name="email" placeholder="Email" autocomplete="email" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" name="password" placeholder="Password" onclick="togglePasswordVisibility()" />
+              <input type="password" id="admin-password" name="password" placeholder="Password" autocomplete="current-password" />
+              <i class="fas fa-eye toggle-password" onclick="togglePasswordVisibility('admin-password', this)"></i>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" name="otp" placeholder="OTP" />
+              <input type="password" id="admin-otp" name="otp" placeholder="OTP" autocomplete="one-time-code" />
+              <i class="fas fa-eye toggle-password" onclick="togglePasswordVisibility('admin-otp', this)"></i>
             </div>
             <div class="otp-buttons">
-              <button type="button" class="btn small-btn" onclick="sendOTP()">Send OTP</button>
-              <button type="button" class="btn small-btn" onclick="resendOTP()">Resend OTP</button>
+              <button type="button" class="btn small-btn" onclick="sendOTP('adminlogin')">Send OTP</button>
+              <button type="button" class="btn small-btn" onclick="resendOTP('adminlogin')">Resend OTP</button>
             </div>
-            <input type="submit" class="btn" value="Login" onclick="submitadminForm()" />
+            <input type="submit" class="btn solid" value="Login" onclick="submitadminForm(event)" />
           </form>
         </div>
       </div>
