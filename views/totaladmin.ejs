@@ -158,14 +158,14 @@
             </div>
 
             <ul class="box-info">
-                <% admin.forEach(admin => { %>
+                <% admins.forEach(admin => { %>
                 <li>
                     <i class='bx bxs-user'></i>
                     <span class="text">
-                        <h3><%= admin.name %></h3>
+                        <h3><%= admin.username %></h3>
                         <p><%= admin.employeeID %></p>
                         <p><%= admin.email %></p>
-                        <p><%= admin.department %></p>
+                        <!--<p><%= admin.department %></p>-->
                         <div class="button-container">
                             <button class="user-button" onclick="deleteAdmin('<%= admin.id %>')">Delete Admin</button>
                             <button class="user-button" onclick="updateAdmin('<%= admin.id %>')">Update Admin</button>

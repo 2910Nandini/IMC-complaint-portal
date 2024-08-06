@@ -154,4 +154,16 @@ router.get('/totalcomplaints', async (req, res) => {
     }
 });
 
+// Route to render the totaladmin page
+router.get('/totaladmin', async (req, res) => {
+    try {
+        const admins = await Admin.find({});
+        res.render('totaladmin', { admins });
+    } catch (error) {
+        console.error('Error fetching admins:', error);
+        res.status(500).send('Error fetching admins');
+    }
+});
+
+
 module.exports = router;
