@@ -143,4 +143,15 @@ router.get('/alluser', async (req, res) => {
     }
 });
 
+// Route to render the alluser page
+router.get('/totalcomplaints', async (req, res) => {
+    try {
+        const complaints = await Complaint.find({});
+        res.render('totalcomplaints', { complaints });
+    } catch (error) {
+        console.error('Error fetching complaints:', error);
+        res.status(500).send('Error fetching complaints');
+    }
+});
+
 module.exports = router;
