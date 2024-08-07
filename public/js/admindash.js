@@ -59,58 +59,63 @@ switchMode.addEventListener('change', function () {
 	}
 })
 
-// Setup the data
-const data = {
-    labels: ['Complaints'],
-    datasets: [
-        {
-            label: 'Completed',
-            data: [10], // Replace with the actual count
-            backgroundColor: 'lightblue'
-        },
-        {
-            label: 'Pending',
-            data: [5], // Replace with the actual count
-            backgroundColor: 'orange'
-        },
-        {
-            label: 'Processing',
-            data: [7], // Replace with the actual count
-            backgroundColor: 'lightcoral'
-        }
-    ]
-};
+async function fetchComplaintCounts() {
+    try {
+        const response = await fetch('/complaint-counts');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching complaint counts:', error);
+        return null;
+    }
+}
 
-// Config for the chart
-const config = {
-    type: 'bar',
-    data: data,
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
+async function createChart() {
+    const counts = await fetchComplaintCounts();
+
+    if (!counts) {
+        return;
+    }
+
+    const data = {
+        labels: ['Complaints'],
+        datasets: [
+            {
+                label: 'Completed',
+                data: [counts.completedCount],
+                backgroundColor: 'lightblue'
             },
-            title: {
-                display: true,
-                text: 'Complaint Status'
-            }
-        },
-        scales: {
-            x: {
-                stacked: true,
+            {
+                label: 'Pending',
+                data: [counts.pendingCount],
+                backgroundColor: 'orange'
             },
-            y: {
-                stacked: true
+            {
+                label: 'In Progress',
+                data: [counts.inProgressCount],
+                backgroundColor: 'lightcoral'
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
         }
-    },
-};
+    };
 
-// Render the chart
-const ctx = document.getElementById('complaintStatusChart').getContext('2d');
-new Chart(ctx, config);
+    const ctx = document.getElementById('complaintStatusChart').getContext('2d');
+    new Chart(ctx, config);
+}
 
+document.addEventListener('DOMContentLoaded', createChart);
 
 
 

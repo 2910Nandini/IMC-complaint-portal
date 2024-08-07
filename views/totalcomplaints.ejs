@@ -123,9 +123,9 @@
                             <a href="/admindash">Dashboard</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
-                        <li>
+                        <!--<li>
                             <a class="active" href="#">Home</a>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
             </div>
@@ -141,14 +141,14 @@
                 <li>
                     <i class='bx bxs-hourglass-top'></i>
                     <span class="text">
-                        <h3>22</h3>
+                        <h3><%= pendingCount %></h3>
                         <p>Pending</p>
                     </span>
                 </li>
                 <li>
                     <i class='bx bxs-comment-check'></i>
                     <span class="text">
-                        <h3>22</h3>
+                        <h3><%= solvedCount %></h3>
                         <p>Solved</p>
                     </span>
                 </li>
@@ -193,51 +193,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <img src="/images/avatar.svg">
-                                    <p>USER 1</p>
-                                </td>
-                                <td>IT Department</td>
-                                <td>user@123</td>
-                                <td>26/7/24</td>
-                                <td><span class="status completed">Completed</span></td>
-                                <td><button class="data-view" onclick="openModal('view1')">view</button></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="/images/avatar.svg">
-                                    <p>USER 2</p>
-                                </td>
-                                <td>Revenue Department</td>
-                                <td>user@345</td>
-                                <td>27/7/24</td>
-                                <td><span class="status pending">Pending</span></td>
-                                <td><button class="data-view" onclick="openModal('view1')">view</button></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="/images/avatar.svg">
-                                    <p>USER 3</p>
-                                </td>
-                                <td>Education Department</td>
-                                <td>user@567</td>
-                                <td>28/7/24</td>
-                                <td><span class="status process">Process</span></td>
-                                <td><button class="data-view" onclick="openModal('view1')">view</button></td>
-                            </tr>
+                            <% complaints.forEach(complaint => { %>
+                                <tr>
+                                    <td>
+                                        <img src="/images/avatar.svg">
+                                        <p><%= complaint.employeeName %></p>
+                                    </td>
+                                    <td><%= complaint.department %></td>
+                                    <td><%= complaint.email %></td>
+                                    <td><%= new Date(complaint.complaintDate).toLocaleDateString() %></td>
+                                    <td><span class="status <%= complaint.status.toLowerCase().replace(' ', '-') %>"><%= complaint.status %></span></td>
+                                    <td><button class="data-view" onclick="openModal('<%= complaint._id %>')">view</button></td>
+                                </tr>
+                            <% }) %>
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Modal -->
-                <div id="modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <p id="modal-content"></p>
-                    </div>
-                </div>
             </div>
+            
         </main>
         <!-- MAIN -->
     </section>

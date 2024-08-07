@@ -96,21 +96,16 @@
                 </div>
                 <div class="popup-manage">
                     <p>Email ID <i class="fas fa-envelope"></i></p>
-                    <p class="profile-email">admin@gmail.com</p>
+                    <p class="profile-email"><%= admins.email %></p>
                 </div>
                 <div class="popup-manage">
                     <p>Username <i class="fas fa-user"></i></p>
-                    <p>ADMIN01</p>
+                    <p><%= admins.username %></p>
                 </div>
                 <div class="popup-manage">
                     <p>Employee ID <i class="fas fa-id-badge"></i></p>
-                    <p class="profile-email">1234</p>
-                </div>
-                <div class="popup-options">
-                    <ul>
-                        <li onclick="navigateTo('logout')">Logout</li>
-                    </ul>
-                </div>
+                    <p class="profile-email"><%= admins.employeeID %></p>
+                </div>                
             </div>
         </nav>
         <!-- NAVBAR -->
@@ -122,12 +117,12 @@
                     <h1>Admin Dashboard</h1>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="#">Dashboard</a>
+                            <a href="/admindash">Dashboard</a>
                         </li>
                         <li><i class='bx bx-chevron-right' ></i></li>
-                        <li>
+                        <!--<li>
                             <a class="active" href="#">Home</a>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
             </div>
@@ -136,21 +131,21 @@
                 <li>
                     <i class='bx bxs-calendar-check' ></i>
                     <span class="text">
-                        <h3>22</h3>
+                        <h3><%= complaints.length %></h3>
                         <p>All Complaint</p>
                     </span>
                 </li>
                 <li>
                     <i class='bx bxs-group' ></i>
                     <span class="text">
-                        <h3>47</h3>
-                        <p>Department</p>
+                        <h3><%= admins.length %></h3>
+                        <p>Admin</p>
                     </span>
                 </li>
                 <li>
                     <i class='bx bxs-user' ></i>
                     <span class="text">
-                        <h3>40</h3>
+                        <h3><%= users.length %></h3>
                         <p>Total User</p>
                     </span>
                 </li>
@@ -172,47 +167,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <img src="/images/avatar.svg">
-                                    <p>USER</p>
-                                </td>
-                                <td>IT Department</td>
-                                <td><span class="status completed">Completed</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="/images/avatar.svg">
-                                    <p>USER</p>
-                                </td>
-                                <td>Revenue Department</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="/images/avatar.svg">
-                                    <p>USER</p>
-                                </td>
-                                <td>Revenue Department</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="/images/avatar.svg">
-                                    <p>USER</p>
-                                </td>
-                                <td>Revenue Department</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="/images/avatar.svg">
-                                    <p>USER</p>
-                                </td>
-                                <td>Education Department</td>
-                                <td><span class="status process">Process</span></td>
-                            </tr>
-                        
+                            <% complaints.forEach(complaint => { %>
+                                <tr>
+                                    <td>
+                                        <img src="/images/avatar.svg">
+                                        <p><%= complaint.employeeName %></p>
+                                    </td>
+                                    <td><%= complaint.department %></td>
+                                    <td><span class="status <%= complaint.status.toLowerCase().replace(' ', '-') %>"><%= complaint.status %></span></td>
+                                </tr>
+                            <% }) %>
                         </tbody>
                     </table>
                 </div>

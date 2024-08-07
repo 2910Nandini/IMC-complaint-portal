@@ -35,10 +35,29 @@ const complaintSchema = new mongoose.Schema({
     complaintAttachment: {
         type: String, // Assuming the file path or URL will be stored here
         required: true
+    },
+    status: {
+        type: String,
+        enum: ['Pending', 'In Progress', 'Completed'],
+        default: 'Pending'
     }
 }, {
     timestamps: true
 });
+
+complaintSchema.pre('save', function(next) {
+    // Example condition to change status from Pending to In Progress
+    if (this.isModified('status') && this.status === 'Pending') {
+        this.status = 'In Progress';
+    }
+
+    // Example condition to change status from In Progress to Completed
+    if (this.isModified('status') && this.status === 'In Progress') {
+        this.status = 'Completed';
+    }
+    next();
+});
+
 
 const Complaint = mongoose.model('Complaint', complaintSchema);
 

@@ -61,60 +61,6 @@ switchMode.addEventListener('change', function () {
 	}
 })
 
-// Setup the data
-const data = {
-    labels: ['Complaints'],
-    datasets: [
-        {
-            label: 'Completed',
-            data: [10], // Replace with the actual count
-            backgroundColor: 'lightblue'
-        },
-        {
-            label: 'Pending',
-            data: [5], // Replace with the actual count
-            backgroundColor: 'orange'
-        },
-        {
-            label: 'Processing',
-            data: [7], // Replace with the actual count
-            backgroundColor: 'lightcoral'
-        }
-    ]
-};
-
-// Config for the chart
-const config = {
-    type: 'bar',
-    data: data,
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Complaint Status'
-            }
-        },
-        scales: {
-            x: {
-                stacked: true,
-            },
-            y: {
-                stacked: true
-            }
-        }
-    },
-};
-
-// Render the chart
-const ctx = document.getElementById('complaintStatusChart').getContext('2d');
-new Chart(ctx, config);
-
-
-
 
 function togglePopup() {
     const popup = document.getElementById('profilePopup');
@@ -138,16 +84,28 @@ window.onclick = function(event) {
     }
 }
 
-function deleteUser() {
+
+function deleteUser(employeeID) {
     // Add your delete user logic here
-    alert('User deleted');
+    //alert('User deleted'); {
+        if (confirm('Are you sure you want to delete this user?')) {
+            fetch(`/alluser/${employeeID}`, {
+                method: 'DELETE',
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('User deleted successfully');
+                    
+                } else {
+                    alert('Failed to delete users');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting user:', error);
+                alert('An error occurred while deleting the user');
+            });
+        }
 }
-
-function updateUser() {
-    // Redirect to the Reg.html page for updating user details
-    window.location.href = 'Reg.html';
-}
-
 
 function togglePopup() {
     const popup = document.getElementById('profilePopup');

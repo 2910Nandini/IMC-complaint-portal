@@ -730,7 +730,15 @@ option {
 	}
 }
 
-
+.status.pending {
+    color: orange;
+}
+.status.completed {
+    color: green;
+}
+.status.process {
+    color: blue;
+}
 
 .popup {
     font-family: Arial, sans-serif;
